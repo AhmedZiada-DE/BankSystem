@@ -1,10 +1,12 @@
 #pragma once
-class Employee : public person {
+#include "person.h"
+
+class employee : public person {
 private:
     double salary;
 
 public:
-    Employee(int id, string name, string password, double salary)
+    employee(int id, string name, string password, double salary)
         : person(id, name, password) {}
 
 
@@ -40,6 +42,7 @@ public:
         cout << "Listing all clients :" << id << "," << name << endl;
     }
     //Modify client's info
+
     void editClientInfo(string Newname, string NewPassword) {
 
         cout << "Client's info updates:" << "name:" << Newname << ", " << "Password:" << NewPassword << endl;
@@ -51,6 +54,4 @@ public:
 
 
 };
-
-
 

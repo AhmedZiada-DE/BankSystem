@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="BankSystem.cpp" />
     <ClCompile Include="client.cpp" />
+    <ClCompile Include="employee.cpp" />
     <ClCompile Include="person.cpp" />
     <ClCompile Include="validation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client.h" />
+    <ClInclude Include="employee.h" />
     <ClInclude Include="person.h" />
     <ClInclude Include="validation.h" />
   </ItemGroup>
