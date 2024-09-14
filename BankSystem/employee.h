@@ -2,16 +2,22 @@
 #include "person.h"
 
 class employee : public person {
-private:
+protected:
     double salary;
 
 public:
-    employee(int id, string name, string password, double salary)
-        : person(id, name, password) {}
+    employee(string name, string password, double salary) :
+        person(name, password) {
+        setSalary(salary);
+    }
 
 
     void setSalary(double salary) {
-        this->salary = salary;
+        if(validation::minSalary(salary))
+            this->salary = salary;
+        else {
+            cout << "Min salary is 5000" << endl;
+        }
     }
 
     double getSalary() {
@@ -29,7 +35,6 @@ public:
             cout << "Login failed" << endl;
         return false;
     }
-
     void addClient(int id, string name, string password, double balance) {
 
         cout << "Client " << name << " added successfully." << endl;
@@ -45,11 +50,13 @@ public:
 
     void editClientInfo(string Newname, string NewPassword) {
 
-        cout << "Client's info updates:" << "name:" << Newname << ", " << "Password:" << NewPassword << endl;
+        cout << "Client's info updates:" << "name:" << Newname <<
+            ", " << "Password:" << NewPassword << endl;
     }
-
-    void displayClientInfo() {
-        cout << "Displaying client info: ID=" << getID() << ", Name=" << getName() << endl;
+    //Edited this one to use the virtual meth
+    void displayInfo() {
+        cout << "Displaying client info: ID=" << getID() 
+            << ", Name=" << getName() << endl;
     }
 
 

@@ -9,11 +9,15 @@ private:
 	I will need to think about it more yet
 	*/
 	void setBalance(const double& balance) {
-		this->balance = balance;
+		if(validation::intializeBalance(balance))
+			this->balance = balance;
+		else {
+			cout << "Balance is less than 1500, min is 1500" << endl;
+		}
 	}
 public:
-	client(int id, string name, string password, double balance) :
-		person(id, name, password), balance(balance) {}
+	client(string name, string password, double balance) :
+		person(name, password), balance(balance) {}
 	/*
 	-I'm creating the base and then we have to edit the class for validation later
 	-This is just to start the project
@@ -41,19 +45,32 @@ public:
 	}
 	void deposit(const double& amount) {
 		//We can check if the value is positive first
-		balance += amount;
+		if(validation::intializeBalance(amount))
+			balance += amount;
+		else {
+			cout << "Invalid amount" << endl;
+		}
 	}
 	void withdraw(const double& amount) {
 		//Check if the amount is equal or less than the balance before withdrawing
-		balance -= amount;
+		if (validation::intializeBalance(amount) && balance >= amount)
+			balance -= amount;
+		else {
+			cout << "Insufficient Balance" << endl;
+		}
 	}
 	void transferTo(const double& amount, client& recipient) {
 		/*
 		Validate that amount equal or less than balance
 		deduct from balance and send to recipient
 		*/
+		if (validation::intializeBalance(amount) && balance >= amount) {
 		balance -= amount;
 		recipient.balance += amount;
+		}
+		else {
+			cout << "Insufficient Balance" << endl;
+		}
 	}
 	void checkBalance() {
 		cout << "Balance is: " << balance << endl;
